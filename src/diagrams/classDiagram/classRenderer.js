@@ -14,7 +14,7 @@ let classCnt = 0
 const conf = {
   dividerMargin: 10,
   padding: 5,
-  textHeight: 10
+  textHeight: 8
 }
 
 // Todo optimize
@@ -229,6 +229,7 @@ const drawClass = function (elem, classDef) {
   const title = g.append('text')
     .attr('x', conf.padding)
     .attr('y', conf.textHeight + conf.padding)
+    .attr('class', 'classTitle')
     .text(classDef.id)
 
   const titleHeight = title.node().getBBox().height
@@ -276,6 +277,8 @@ const drawClass = function (elem, classDef) {
     .attr('y', 0)
     .attr('width', classBox.width + 2 * conf.padding)
     .attr('height', classBox.height + conf.padding + 0.5 * conf.dividerMargin)
+    .attr('rx', 10)
+    .attr('ry', 10)
 
   membersLine.attr('x2', classBox.width + 2 * conf.padding)
   methodsLine.attr('x2', classBox.width + 2 * conf.padding)
