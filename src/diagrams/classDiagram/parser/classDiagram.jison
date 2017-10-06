@@ -140,12 +140,12 @@ className
 statement
     : relationStatement       { yy.addRelation($1); }
     | relationStatement LABEL { $1.title =  yy.cleanupLabel($2); yy.addRelation($1);        }
-    | classStatement
+    | classStatement          
     | methodStatement
     ;
 
 classStatement
-    : CLASS className
+    : CLASS className         { yy.addClass($2); }
     | CLASS className STRUCT_START members STRUCT_STOP {/*console.log($2,JSON.stringify($4));*/yy.addMembers($2,$4);}
     ;
 
