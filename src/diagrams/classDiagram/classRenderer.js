@@ -241,7 +241,7 @@ const drawClass = function (elem, classDef) {
 
   const members = g.append('text')      // text label for the x axis
     .attr('x', conf.padding)
-    .attr('y', titleHeight + (conf.dividerMargin) + conf.textHeight)
+    .attr('y', titleHeight + (conf.dividerMargin) + conf.textHeight + conf.padding)
     .attr('fill', 'white')
     .attr('class', 'classText')
 
@@ -272,13 +272,19 @@ const drawClass = function (elem, classDef) {
   })
 
   const classBox = g.node().getBBox()
+
   g.insert('rect', ':first-child')
+    .attr('class', 'classTitleBox')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('width', classBox.width + 2 * conf.padding)
+    .attr('height', conf.padding + titleHeight + conf.dividerMargin / 2)
+
+  g.insert('rect' , ':first-child')
     .attr('x', 0)
     .attr('y', 0)
     .attr('width', classBox.width + 2 * conf.padding)
     .attr('height', classBox.height + conf.padding + 0.5 * conf.dividerMargin)
-    .attr('rx', 10)
-    .attr('ry', 10)
 
   membersLine.attr('x2', classBox.width + 2 * conf.padding)
   methodsLine.attr('x2', classBox.width + 2 * conf.padding)
