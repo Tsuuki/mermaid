@@ -200,6 +200,36 @@ const drawEdge = function (elem, path, relation) {
       .attr('height', bounds.height + conf.padding)
   }
 
+  x = Math.ceil(lineData[0].x);
+  y = Math.ceil(lineData[0].y);
+
+  if (relation.cardinality1 !== "none") {
+    const g = elem.append('g')
+      .attr('class', 'classLabel')
+    const label = g.append('text')
+      .attr('class', 'label')
+      .attr('x', x + 12)
+      .attr('y', y + 12)
+      .attr('fill', 'red')
+      .attr('text-anchor', 'middle')
+      .text(relation.cardinality1)
+  }
+
+  x = Math.floor(lineData[lineData.length - 1].x);
+  y = Math.floor(lineData[lineData.length - 1].y);
+
+  if(relation.cardinality2 !== "none") {
+    const g = elem.append('g')
+      .attr('class', 'classLabel')
+      const label = g.append('text')
+      .attr('class', 'label')
+      .attr('x', x + 12)
+      .attr('y', y - 8)
+      .attr('fill', 'red')
+      .attr('text-anchor', 'middle')
+      .text(relation.cardinality2)
+  }
+
   edgeCount++
 }
 
